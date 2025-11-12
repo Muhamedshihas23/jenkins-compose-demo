@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-               git 'https://github.com/Muhamedshihas23/jenkins-docker-compose-demo.git'
+               git 'https://github.com/Muhamedshihas23/jenkins-compose-demo.git'
             }
         }
 
