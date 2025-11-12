@@ -2,33 +2,34 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-               git 'https://github.com/Muhamedshihas23/jenkins-compose-demo.git'
+                echo 'Fetching source code...'
+                checkout scm  // ✅ Jenkins auto-fetches from correct branch
             }
         }
 
         stage('Build Docker Images') {
             steps {
-                sh 'docker compose build'
+                echo 'Building Docker images...'
+                sh 'docker-compose build'
             }
         }
 
         stage('Deploy Containers') {
             steps {
-                sh 'docker compose down'
-                sh 'docker compose up -d'
+                echo 'Deploying containers...'
+                sh 'docker-compose up -d'
             }
         }
     }
 
     post {
         success {
-            echo 'Deployment successful!'
+            echo '✅ Deployment successful!'
         }
         failure {
-            echo 'Deployment failed!'
+            echo '❌ Deployment failed!'
         }
     }
 }
-
